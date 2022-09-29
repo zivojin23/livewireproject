@@ -20,8 +20,6 @@ class ProjectForm extends Component
     public $form_id;
     public $updateForm = false;
 
-
-
     protected $rules = [
         'first_name' => 'required',
         'last_name' => 'required',
@@ -38,18 +36,6 @@ class ProjectForm extends Component
         return view('livewire.project-form');
     }
 
-    // public function resetAll()
-    // {
-    //     $this->first_name = '';
-    //     $this->last_name = '';
-    //     $this->email = '';
-    //     $this->project_name = '';
-    //     $this->project_priority = '';
-    //     $this->project_status = '';
-    //     $this->project_person = '';
-
-    // }
-
     public function store()
     {
         $this->validate();
@@ -65,10 +51,9 @@ class ProjectForm extends Component
 
         ]);
 
-        session()->flash('submitted', 'Submitted successfully');
+        session()->flash('submitted', 'Submitted!');
 
         $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
-
 
     }
 
@@ -109,7 +94,7 @@ class ProjectForm extends Component
             'project_person' => $this->project_person
         ])->save();
 
-        session()->flash('updated', 'Updated successfully');
+        session()->flash('updated', 'Updated!');
 
         // $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
 
@@ -120,7 +105,7 @@ class ProjectForm extends Component
 
         Form::findOrFail($id)->delete();
 
-        session()->flash('deleted', 'Deleted successfully');
+        session()->flash('deleted', 'Deleted!');
 
         $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
 

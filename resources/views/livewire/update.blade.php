@@ -2,57 +2,57 @@
 
     <input wire:model="form_id" type="hidden">
 
-<div class="bg-blue-100">
+<div class="mt-5"
+>
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-    <div class="py-2 px-4 flex justify-center items-center">
-
-        <label for="first_name">First Name</label>
-        <input class="p-2 rounded-lg ml-5" id="first_name" type="text" wire:model="first_name" readonly="readonly">
+        <label for="first_name" class="mb-2 mt-10 text-sm font-medium">First Name</label>
+        <input class="cursor-not-allowed shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="first_name" type="text" wire:model="first_name" disabled >
        
-        @error('first_name')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('first_name')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="last_name">Last Name</label>
-        <input class="p-2 rounded-lg ml-5" id="last_name" type="text" wire:model="last_name" readonly="readonly">
+        <label for="last_name" class="mb-2 text-sm font-medium">Last Name</label>
+        <input class="cursor-not-allowed shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="last_name" type="text" wire:model="last_name"  disabled>
         
-        @error('last_name')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('last_name')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="email">Email</label>
-        <input class="p-2 rounded-lg ml-5" id="email" type="email" wire:model="email" readonly="readonly">
+        <label for="email" class="mb-2 text-sm font-medium">Email</label>
+        <input class="cursor-not-allowed shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="email" type="email" wire:model="email" disabled>
         
-        @error('email')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('email')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_name">Project Name</label>
-        <input wire:model="project_name" class="p-2 rounded-lg ml-5" id="project_name" type="text" readonly="readonly">
+        <label for="project_name" class="mb-2 text-sm font-medium">Project Name</label>
+        <input wire:model="project_name" class="cursor-not-allowed shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="project_name" type="text" disabled>
         
-        @error('project_name')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('project_name')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_priority">Project Priority</label>
-        <select class="p-2 rounded-lg ml-5" wire:model="project_priority" id="project_priority">
+        <label for="project_priority" class="mb-2 text-sm font-medium">Project Priority</label>
+        <select class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="project_priority" id="project_priority">
             <option value="" disabled>Please select one</option>
             <option value="LOW">Low</option>
             <option value="MEDIUM">Medium</option>
             <option value="HIGH">High</option>
         </select>
         
-        @error('project_priority')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('project_priority')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_status">Project Status</label>        
-        <select class="p-2 rounded-lg ml-5" wire:model="project_status" id="project_status">
+        <label for="project_status" class="mb-2 text-sm font-medium">Project Status</label>        
+        <select class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="project_status" id="project_status">
             <option value="" disabled>Please select one</option>
             <option value="Design">Design</option>
             <option value="Ready">Ready</option>
@@ -61,20 +61,20 @@
             <option value="Completed">Completed</option>
         </select>
 
-        @error('project_status')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('project_status')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_person">Project Person</label>
-        <input wire:model="project_person" class="p-2 rounded-lg ml-5" id="project_person" type="email">
+        <label for="project_person" class="mb-2 text-sm font-medium">Project Person</label>
+        <input wire:model="project_person" class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="project_person" type="email">
         
-        @error('project_person')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('project_person')<span class="text-red-600 text-sm font-medium">{{ $message }}</span>@enderror
     </div>
 
     <div class="p-5 flex justify-end">
-        <button class="bg-black hover:bg-green-700 text-white rounded-lg py-3 px-5 font-bold mr-4" wire:click.prevent="update()">Save</button>
-        <button class="bg-black hover:bg-red-700 text-white rounded-lg p-3 font-bold" wire:click.prevent="cancel()">Cancel</button>
+        <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow mr-4" wire:click.prevent="update()">Save<i class="fa-solid fa-check ml-5"></i></button>
+        <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click.prevent="cancel()">Cancel<i class="fa-solid fa-x ml-5"></i></button>
     </div>
 
 </div>

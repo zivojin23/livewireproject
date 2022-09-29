@@ -6,25 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/5592293c7c.js" crossorigin="anonymous"></script>
+
     @livewireStyles
 </head>
-<body>
+<body class="bg-gray-600">
 
-    <div>
-        <div class="p-5 flex justify-center">
-            <a class="font-extrabold text-blue-800 text-6xl" href="">FORM & PROJECT LIST</a>
-        </div>
-    </div>
-    
-
-
-    <div>
-        <div class="bg-red-100">
-            @livewire('project-form')
-        </div>
+    <div class="p-5 flex justify-center">
+        <h1 class="font-bold text-white text-7xl">FORM & PROJECT LIST</h1>
     </div>
 
-
+    <div>
+        @livewire('project-form')
+    </div>
 
     @livewireScripts
 </body>

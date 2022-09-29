@@ -1,101 +1,75 @@
 <div class="grid grid-cols-2">
-
+    <div>
         {{-- FORM --}}
-        <div class="">
-            <div class="">
+        <div class="bg-white w-3/5 mx-auto rounded-lg">
+    
+            @if (session()->has('submitted'))
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg border-green-300 w-3/5 mx-auto">
+                <div class="font-bold text-xl text-green-700">
+                    {{ session()->get('submitted') }}
+                    <i class="fa-solid fa-thumbs-up ml-5"></i>
+                </div>    
+            </div>
+            @endif
 
-                @if (session()->has('submitted'))
-                    <div class="p-6 bg-green-300 text-3xl">
-                        {{ session()->get('submitted') }}
-                    </div>                
-                @endif
+            @if (session()->has('deleted'))
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg w-3/5 mx-auto">
+                <div class="font-bold text-xl text-green-700">
+                    {{ session()->get('deleted') }}
+                    <i class="fa-solid fa-check ml-5"></i>
+                </div>
+            </div>   
+            @endif
 
-                @if (session()->has('deleted'))
-                    <div class="p-6 bg-green-300 text-3xl">
-                        {{ session()->get('deleted') }}
-                    </div>   
-                @endif
-                @if (session()->has('updated'))
-                    <div class="p-6 bg-green-300 text-3xl">
-                        {{ session()->get('updated') }}
-                    </div>                
-                @endif
-                @if ($updateForm)
-                    @include('livewire.update')
-                @else     
-                    @include('livewire.create')
-                @endif
+            @if (session()->has('updated'))
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg border-green-300 w-3/5 mx-auto">
+                <div class="font-bold text-xl text-green-700">
+                    {{ session()->get('updated') }}
+                    <i class="fa-solid fa-check ml-5"></i>
+                </div>
+            </div>                
+            @endif
 
+            @if ($updateForm)
+                @include('livewire.update')
+            @else     
+                @include('livewire.create')
+            @endif
+
+        </div>
+        {{-- FORM --}}
+    </div>
+
+    {{-- PROJECT LIST --}}
+
+
+    <div class="flex flex-col w-3/5 mx-auto my-8">
+
+        {{-- <h2 class="font-bold text-2xl text-white p-4 flex justify-center">PROJECT LIST - VIEW</h2> --}}
+
+        @foreach ($forms as $form)
+
+        <div class="rounded-lg bg-white mb-8">
+            <div class="p-4 flex justify-start">
+                <ul class="text-base font-medium rounded-lg">
+                    <li class="py-2 px-4">First Name: <b>{{ $form->first_name }}</b></li>
+                    <li class="py-2 px-4">Last Name: <b>{{ $form->last_name }}</b></li>
+                    <li class="py-2 px-4">Email: <b>{{ $form->email }}</b></li>
+                    <li class="py-2 px-4">Project Name: <b>{{ $form->project_name }}</b></li>
+                    <li class="py-2 px-4">Project Priority: <b>{{ $form->project_priority }}</b></li>
+                    <li class="py-2 px-4">Project Status: <b>{{ $form->project_status }}</b></li>
+                    <li class="py-2 px-4">Project Person: <b>{{ $form->project_person }}</b></li>
+                </ul>
+            </div>
+
+            <div class="p-5 flex justify-end">
+                <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow mr-4" wire:click="edit({{ $form->id }})">Edit<i class="fa-sharp fa-solid fa-pen ml-5"></i></button>
+                <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click="delete({{ $form->id }})">Delete<i class="fa-solid fa-trash ml-5"></i></button>
             </div>
         </div>
-        {{-- FORM --}}
+        @endforeach
 
-
-        {{-- PROJECT LIST --}}
-        <div class="">
-
-            <h2 class="font-bold text-2xl p-4">
-                PROJECT LIST - VIEW
-            </h2>
-
-            @foreach ($forms as $form)
-
-
-
-
-
-
-            {{-- <div class="w-4/5 mx-auto">
-                <div class="bg-white pt-10 rounded-lg drop-shadow-2xl sm:basis-3/4 basis-full sm:mr-8 pb-10 sm:pb-0">
-                    <div class="w-11/12 mx-auto pb-10">
-
-                        <h2 class="text-gray-900 text-2xl font-bold pt-6 pb-0 sm:pt-0 hover:text-gray-700 transition-all">
-
-                            <p class="text-gray-900 text-lg py-8 w-full break-words">
-                                {{ $form->first_name }}
-                            </p>
-                        </h2>
-    
-                        <p class="text-gray-900 text-lg py-8 w-full break-words">
-                            {{ $form->last_name }}
-                        </p>
-
-                        <p class="text-gray-900 text-lg py-8 w-full break-words">
-                            {{ $form->email}}
-                        </p>
-    
-                        <span class="text-gray-500 text-sm sm:text-base">
-                        Made by:
-                            <p class="text-green-500 italic hover:text-green-400 pb-3">
-                                Zivojin
-                            </p>
-                        13-07-2022
-                    </span>
-                    </div>
-                </div>
-            </div> --}}
-
-
-
-
-
-                <div class="p-4">
-                    <p class="py-2 px-4 font-bold">First Name: {{ $form->first_name }}</p>
-                    <p class="py-2 px-4 font-bold">Last Name: {{ $form->last_name }}</p>
-                    <p class="py-2 px-4 font-bold">Email: {{ $form->email }}</p>
-                    <p class="py-2 px-4 font-bold">Project Name: {{ $form->project_name }}</p>
-                    <p class="py-2 px-4 font-bold">Project Priority: {{ $form->project_priority }}</p>
-                    <p class="py-2 px-4 font-bold">Project Status: {{ $form->project_status }}</p>
-                    <p class="py-2 px-4 font-bold">Project Person: {{ $form->project_person }}</p>
-                </div>
-
-                <div class="p-4">
-                    <button class="p-3 rounded-full font-bold border border-black bg-blue-300 hover:bg-blue-500" wire:click="edit({{ $form->id }})">EDIT</button>
-                    <button class="p-3 rounded-full font-bold border border-black bg-red-300 hover:bg-red-500" wire:click="delete({{ $form->id }})">DELETE</button>
-                </div>
-            @endforeach
-
-        </div>
-        {{-- PROJECT LIST --}}
-
+    </div>
+    {{-- PROJECT LIST --}}
 </div>
+

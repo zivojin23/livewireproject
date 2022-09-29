@@ -1,45 +1,45 @@
 <form action="">
 
-<div class="bg-blue-100">
+<div class="">
 
     
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
         
-        <label for="first_name" class="">First Name</label>
-        <input wire:model="first_name" class="p-2 rounded-lg ml-5" id="first_name" type="text" placeholder="Your First Name">
+        <label for="first_name" class="mb-2 mt-10 text-sm font-medium">First Name</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="first_name" id="first_name" type="text" placeholder="Your First Name">
         
         @error('first_name')<span class="text-red-600">{{ $message }}</span>@enderror
         
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="last_name">Last Name</label>
-        <input wire:model="last_name" class="p-2 rounded-lg ml-5" id="last_name" type="text" placeholder="Your Last Name">
+        <label for="last_name" class="mb-2 text-sm font-medium">Last Name</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="last_name" id="last_name" type="text" placeholder="Your Last Name">
         
         @error('last_name')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="email">Email</label>
-        <input wire:model="email" class="p-2 rounded-lg ml-5" id="email" type="email" placeholder="Your Email">
+        <label for="email" class="mb-2 text-sm font-medium">Email</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="email"  id="email" type="email" placeholder="Your Email">
         
         @error('email')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_name">Project Name</label>
-        <input wire:model="project_name" class="p-2 rounded-lg ml-5" id="project_name" type="text" placeholder="Name of your project">
+        <label for="project_name" class="mb-2 text-sm font-medium">Project Name</label>
+        <input wire:model="project_name" class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="project_name" type="text" placeholder="Name of your project">
         
         @error('project_name')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_priority">Project Priority</label>
-        <select class="p-2 rounded-lg ml-5" wire:model="project_priority" id="project_priority">
+        <label for="project_priority" class="mb-2 text-sm font-medium">Project Priority</label>
+        <select class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="project_priority" id="project_priority">
             <option value="" disabled>Please select one</option>
             <option value="LOW">Low</option>
             <option value="MEDIUM">Medium</option>
@@ -51,10 +51,10 @@
 
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_status">Project Status</label>        
-        <select class="p-2 rounded-lg ml-5" wire:model="project_status" id="project_status">
+        <label for="project_status" class="mb-2 text-sm font-medium">Project Status</label>        
+        <select class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="project_status" id="project_status">
             <option value="" disabled>Please select one</option>
             <option value="Design">Design</option>
             <option value="Ready">Ready</option>
@@ -66,10 +66,10 @@
         @error('project_status')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
-    <div class="py-2 px-4 flex justify-center items-center">
+    <div class="flex flex-col w-3/5 mx-auto my-8">
 
-        <label for="project_person">Project Person</label>
-        <input wire:model="project_person" class="p-2 rounded-lg ml-5" id="project_person" type="text" placeholder="Contact email">
+        <label for="project_person" class="mb-2 text-sm font-medium">Project Person</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="project_person" id="project_person" type="text" placeholder="Contact Email">
         
         @error('project_person')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
@@ -81,8 +81,11 @@
 
 
     <div class="p-5 flex justify-end">
-        <button class="bg-black hover:bg-green-700 text-white rounded-lg p-3 font-bold" wire:click.prevent="store()">Submit</button>
+        <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click.prevent="store()">Submit<i class="fa-solid fa-check ml-5"></i></button>
     </div>
+
+   
+
 
 </div>
 

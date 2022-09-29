@@ -18,5 +18,3 @@ use App\Http\Livewire\ProjectForm;
 Route::get('/', function () {
     return view('home');
 });
-
-Route::get('/forms', ProjectForm::class)->name('forms');
