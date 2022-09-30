@@ -1,10 +1,10 @@
-<div class="grid grid-cols-2">
+<div class="sm:grid sm:grid-cols-2 flex flex-col">
     <div>
         {{-- FORM --}}
-        <div class="bg-white w-3/5 mx-auto rounded-lg">
+        <div class="bg-white sm:w-3/5 w-4/5 mx-auto rounded-lg">
     
             @if (session()->has('submitted'))
-            <div class="bg-green-100 p-4 flex justify-center rounded-lg border-green-300 w-3/5 mx-auto">
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg w-full mx-auto">
                 <div class="font-bold text-xl text-green-700">
                     {{ session()->get('submitted') }}
                     <i class="fa-solid fa-thumbs-up ml-5"></i>
@@ -13,7 +13,7 @@
             @endif
 
             @if (session()->has('deleted'))
-            <div class="bg-green-100 p-4 flex justify-center rounded-lg w-3/5 mx-auto">
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg w-full mx-auto">
                 <div class="font-bold text-xl text-green-700">
                     {{ session()->get('deleted') }}
                     <i class="fa-solid fa-check ml-5"></i>
@@ -22,7 +22,7 @@
             @endif
 
             @if (session()->has('updated'))
-            <div class="bg-green-100 p-4 flex justify-center rounded-lg border-green-300 w-3/5 mx-auto">
+            <div class="bg-green-100 p-4 flex justify-center rounded-lg w-full mx-auto">
                 <div class="font-bold text-xl text-green-700">
                     {{ session()->get('updated') }}
                     <i class="fa-solid fa-check ml-5"></i>
@@ -43,7 +43,7 @@
     {{-- PROJECT LIST --}}
 
 
-    <div class="flex flex-col w-3/5 mx-auto my-8">
+    <div class="flex flex-col sm:w-3/5 w-4/5 mx-auto my-8">
 
         {{-- <h2 class="font-bold text-2xl text-white p-4 flex justify-center">PROJECT LIST - VIEW</h2> --}}
 

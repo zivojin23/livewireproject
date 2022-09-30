@@ -2,8 +2,8 @@
 
     <input wire:model="form_id" type="hidden">
 
-<div class="mt-5"
->
+<div class="mt-5">
+    
     <div class="flex flex-col w-3/5 mx-auto my-8">
 
         <label for="first_name" class="mb-2 mt-10 text-sm font-medium">First Name</label>

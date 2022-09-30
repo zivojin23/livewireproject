@@ -10,15 +10,20 @@
 
     @livewireStyles
 </head>
-<body class="bg-gray-600">
+<body class="bg-blue-300">
 
-    <div class="p-5 flex justify-center">
+
+
+    <div class="p-5 flex justify-center text-center">
         <h1 class="font-bold text-white text-7xl">FORM & PROJECT LIST</h1>
     </div>
 
     <div>
         @livewire('project-form')
     </div>
+
+
+
 
     @livewireScripts
 </body>
