@@ -3,10 +3,14 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Form;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectForm extends Component
 {
+    use WithFileUploads;
+
     public $forms;
 
     public $first_name;
@@ -16,6 +20,7 @@ class ProjectForm extends Component
     public $project_priority = '';
     public $project_status = '';
     public $project_person;
+    public $attachment;
 
     public $form_id;
     public $updateForm = false;
@@ -27,7 +32,8 @@ class ProjectForm extends Component
         'project_name' => 'required',
         'project_priority' => 'required',
         'project_status' => 'required',
-        'project_person' => 'required|email'
+        'project_person' => 'required|email',
+        'attachment' => ''
     ];
 
     public function render()
@@ -40,6 +46,8 @@ class ProjectForm extends Component
     {
         $this->validate();
 
+
+
         Form::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
@@ -47,13 +55,14 @@ class ProjectForm extends Component
             'project_name' => $this->project_name,
             'project_priority' => $this->project_priority,
             'project_status' => $this->project_status,
-            'project_person' => $this->project_person
-
+            'project_person' => $this->project_person,
+            'attachment' => $this->attachment->store('public/docs')
+ 
         ]);
 
         session()->flash('submitted', 'Submitted!');
 
-        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
+        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person', 'attachment']);
 
     }
 
@@ -77,7 +86,7 @@ class ProjectForm extends Component
     {
         $this->updateForm = false;
 
-        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
+        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person', 'attachment']);
     }
 
     public function update()
@@ -107,7 +116,7 @@ class ProjectForm extends Component
 
         session()->flash('deleted', 'Deleted!');
 
-        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person']);
+        $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person', 'attachment']);
 
     }
 }

@@ -16,6 +16,7 @@ class Form extends Model
         'project_name',
         'project_priority',
         'project_status',
-        'project_person'
+        'project_person',
+        'attachment'
     ];
 }

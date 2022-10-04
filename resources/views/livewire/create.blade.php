@@ -74,6 +74,21 @@
         @error('project_person')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
+    <div class="flex flex-col w-3/5 mx-auto my-8">
+
+        <label for="attachment" class="mb-2 text-sm font-medium">Attachment</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="attachment" id="attachment" type="file">
+        
+
+        {{-- @if ($attachment)
+        <img src="{{ $attachment->temporaryUrl() }}" alt="">
+        @endif --}}
+       
+        <div wire:loading wire:target="attachment">Uploading...</div>
+
+        @error('attachment')<span class="text-red-600">{{ $message }}</span>@enderror
+    </div>
+
 
 
 

@@ -15,7 +15,10 @@
 
 
     <div class="p-5 flex justify-center text-center">
-        <h1 class="font-bold text-white text-7xl">FORM & PROJECT LIST</h1>
+        <h1 class="font-bold text-white text-7xl">
+            FORM
+            <i class="fa-brands fa-laravel text-7xl mx-5"></i>
+            PROJECT LIST</h1>
     </div>
 
     <div>
