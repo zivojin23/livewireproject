@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Form;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\WelcomeEmailNotification;
+// Use App\Mail\WelcomeMail;
 
 class ProjectForm extends Component
 {
@@ -33,14 +35,15 @@ class ProjectForm extends Component
         'project_priority' => 'required',
         'project_status' => 'required',
         'project_person' => 'required|email',
-        'attachment' => ''
+        'attachment' => 'nullable',
+        
     ];
 
-    public function render()
+    public function mount()
     {
         $this->forms = Form::orderBy('updated_at', 'desc')->get();
-        return view('livewire.project-form');
     }
+
 
     public function store()
     {
@@ -48,7 +51,7 @@ class ProjectForm extends Component
 
 
 
-        Form::create([
+        $cp = Form::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
@@ -60,9 +63,15 @@ class ProjectForm extends Component
  
         ]);
 
+
+        $cp->notify(new WelcomeEmailNotification());
+
         session()->flash('submitted', 'Submitted!');
 
         $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person', 'attachment']);
+
+
+        // return redirect('/email');
 
     }
 
@@ -118,5 +127,11 @@ class ProjectForm extends Component
 
         $this->reset(['first_name','last_name','email', 'project_name', 'project_priority', 'project_status', 'project_person', 'attachment']);
 
+    }
+
+    public function render()
+    {
+        
+        return view('livewire.project-form');
     }
 }

@@ -1,4 +1,5 @@
 <form action="">
+    @csrf
 
 <div class="">
 
@@ -80,11 +81,15 @@
         <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" wire:model="attachment" id="attachment" type="file">
         
 
-        {{-- @if ($attachment)
+        @if ($attachment)
         <img src="{{ $attachment->temporaryUrl() }}" alt="">
-        @endif --}}
+        @endif
        
-        <div wire:loading wire:target="attachment">Uploading...</div>
+        <div style="min-width: 60px;">
+            <div wire:loading class="px-3 py-1 flex flex-col items-right justify-center">
+                <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-6 w-6 pt-2"></div>
+            </div>
+        </div>
 
         @error('attachment')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>

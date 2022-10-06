@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Livewire\ProjectForm;
+use App\Mail\WelcomeMail;
 
 
 /*
@@ -17,4 +19,10 @@ use App\Http\Livewire\ProjectForm;
 
 Route::get('/', function () {
     return view('home');
+});
+
+
+Route::get('/email', function() {
+    Mail::to('zivojinzgmejl@gmail.com')->send(new WelcomeMail());
+    return new WelcomeMail();
 });
