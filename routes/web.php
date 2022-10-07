@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/email', function() {
-    Mail::to('zivojinzgmejl@gmail.com')->send(new WelcomeMail());
-    return new WelcomeMail();
-});
+// Route::get('/email', function() {
+//     Mail::to('zivojinzgmejl@gmail.com')->send(new WelcomeMail());
+//     return redirect('/');
+// });

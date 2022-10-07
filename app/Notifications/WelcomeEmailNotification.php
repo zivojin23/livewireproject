@@ -46,6 +46,7 @@ class WelcomeEmailNotification extends Notification
                     ->line('The introduction to the notification.')
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!')
                     ->line('Thank you for using our application!');
     }
 
