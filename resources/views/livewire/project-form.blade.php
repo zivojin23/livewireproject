@@ -2,7 +2,7 @@
     <div>
         {{-- FORM --}}
         <div class="bg-white sm:w-3/5 w-4/5 mx-auto rounded-lg">
-    
+
             @if (session()->has('submitted'))
             <div class="bg-green-100 p-4 flex justify-center rounded-lg w-full mx-auto">
                 <div class="font-bold text-xl text-green-700">
@@ -36,6 +36,13 @@
                 @include('livewire.create')
             @endif
 
+<div wire:loading.delay>
+    <div class="flex justify-center items-center bg-blue-300 
+                fixed top-0 left-0 w-full h-full opacity-50">
+        <x-loader />
+    </div>
+</div>
+            
         </div>
         {{-- FORM --}}
     </div>
@@ -109,5 +116,7 @@
       
   @endforeach
 
-  {{-- <button wire:click="load" class="bg-white hover:bg-blue-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow">More</button> --}}
+
+
+
 </div>

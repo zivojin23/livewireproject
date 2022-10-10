@@ -82,12 +82,6 @@
         @if ($attachment)
         <img src="{{ $attachment->temporaryUrl() }}" alt="">
         @endif
-       
-        <div style="min-width: 60px;">
-            <div wire:loading class="px-3 py-1 flex flex-col items-right justify-center">
-                <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-6 w-6 pt-2"></div>
-            </div>
-        </div>
 
         @error('attachment')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
@@ -96,18 +90,7 @@
         <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click.prevent="store()">Submit<i class="fa-solid fa-check ml-5"></i></button>
     </div>
 
-    <div wire:loading.delay class="flex justify-center align-center bg-black absolute w-full h-full">
-        <div class="la-ball-spin text-black">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+
 
 </div>
 </form>

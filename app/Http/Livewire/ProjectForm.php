@@ -49,7 +49,7 @@ class ProjectForm extends Component
 
     public function mount()
     {
-    //     $this->forms = Form::orderBy('updated_at', 'desc')->get();
+        $this->forms = Form::orderBy('updated_at', 'desc')->get();
     }
 
     public function store()
@@ -132,18 +132,12 @@ class ProjectForm extends Component
 
     }
 
-
-    public function load()
-    {
-        $this->amount += 10;
-    }
-
-
     public function render()
     {
-        $this->forms = Form::orderBy('updated_at', 'desc')->get();
 
-        // $this->forms = Form::take($this->amount)->get();
+        // sleep(2);
+        // $this->forms = Form::orderBy('updated_at', 'desc')->get();
+
         return view('livewire.project-form');
     }
 }
