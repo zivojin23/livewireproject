@@ -29,7 +29,7 @@ class WelcomeEmailNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'notification'];
     }
 
     /**

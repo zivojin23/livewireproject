@@ -36,12 +36,12 @@
                 @include('livewire.create')
             @endif
 
-<div wire:loading.delay>
-    <div class="flex justify-center items-center bg-blue-300 
-                fixed top-0 left-0 w-full h-full opacity-50">
-        <x-loader />
-    </div>
-</div>
+        <div wire:loading.delay>
+            <div class="flex justify-center items-center bg-blue-300 
+                        fixed top-0 left-0 w-full h-full opacity-50">
+                <x-loader />
+            </div>
+        </div>
             
         </div>
         {{-- FORM --}}
@@ -65,58 +65,51 @@
 
                 <div class="flex flex-col">
                     <div class="p-3 text-base">
-                        <p class="py-2  ml-3">First Name</p>
-                        <p class="py-2  ml-3">Last Name</p>
-                        <p class="py-2  ml-3">Email</p>
-                        <p class="py-2  ml-3">Project Name</p>
-                        <p class="py-2  ml-3">Project Priority</p>
-                        <p class="py-2  ml-3">Project Status</p>
-                
-                        <p class="py-2  ml-3">Project Person</p>
-                        <p class="py-2  ml-3">Attachment</p>
+                        <p class="py-2 ml-3">First Name</p>
+                        <p class="py-2 ml-3">Last Name</p>
+                        <p class="py-2 ml-3">Email</p>
+                        <p class="py-2 ml-3">Project Name</p>
+                        <p class="py-2 ml-3">Project Priority</p>
+                        <p class="py-2 ml-3">Project Status</p>
+                        <p class="py-2 ml-3">Project Person</p>
+                        <p class="py-2 ml-3">Attachment</p>
                     </div>
                 </div>
 
-                <div class="sm:pl-10  grid col-span-2">
+                <div class="sm:pl-10 grid col-span-2">
                     <div class="p-3 text-base">
-                        
-                            <p class="py-2  ml-3">{{ $form->first_name }}</p>
-                            <p class="py-2  ml-3">{{ $form->last_name }}</p>
-                            <p class="py-2  ml-3">{{ $form->email }}</p>
-                            <p class="py-2  ml-3">{{ $form->project_name }}</p>
-                            <p class="py-2  ml-3">{{ $form->project_priority }}</p>
-
-                            <p class="py-2  ml-3">{{ $form->project_status }}</p>
-                            <p class="py-2  ml-3">{{ $form->project_person }}</p>
-                            {{-- <a class="bg-white hover:bg-blue-200 font-semibold px-4 ml-3 border border-gray-400 rounded-lg shadow text-black" target="_blank" href="{{ Storage::Url($form->attachment) }}">View</a> --}}
-                       
-                            {{-- <a class="py-2 ml-3 hover:text-blue-600" target="_blank" href="{{ Storage::Url($form->attachment) }}">View</a> --}}
-
-                            <a class="flex items-center py-2 ml-3 hover:text-blue-600 hover:underline" target="_blank" href="{{ Storage::Url($form->attachment) }}">View</a>
-                            
+                        <p class="py-2 ml-3">{{ $form->first_name }}</p>
+                        <p class="py-2 ml-3">{{ $form->last_name }}</p>
+                        <p class="py-2 ml-3">{{ $form->email }}</p>
+                        <p class="py-2 ml-3">{{ $form->project_name }}</p>
+                        <p class="py-2 ml-3">{{ $form->project_priority }}</p>
+                        <p class="py-2 ml-3">{{ $form->project_status }}</p>
+                        <p class="py-2 ml-3">{{ $form->project_person }}</p>
+                        <a class="flex items-center py-2 ml-3 hover:text-blue-600 hover:underline" target="_blank" href="{{ Storage::Url($form->attachment) }}">View</a>               
                     </div>
                 </div>
-
 
                 <div class="px-4 py-2 flex flex-col justify-between">
-                    <div>
+                    <div>  
+                        <p class="text-sm italic flex justify-end">{{ $form->updated_at }}</p>
+                    </div>
 
-                  
-                    <p class="text-sm italic flex justify-end">{{ $form->updated_at }}</p>
-                </div>
+
+
                     <div class="p-3 flex flex-col">
                         <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 mb-8 border border-gray-400 rounded-lg shadow" wire:click="edit({{ $form->id }})">Edit<i class="fa-sharp fa-solid fa-pen ml-5"></i></button>
                         <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click="delete({{ $form->id }})">Delete<i class="fa-solid fa-trash ml-5"></i></button>
-                    </div> 
-                </div>
+                    </div>  
 
+                    
+
+
+
+                </div>
             </div>
           </div>
         </div>
       
   @endforeach
-
-
-
 
 </div>

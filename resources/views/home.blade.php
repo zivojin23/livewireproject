@@ -21,6 +21,9 @@
             PROJECT LIST</h1>
     </div>
 
+    <a href="login">Login</a>
+    <a href="logout">Logout</a>
+
     <div>
         @livewire('project-form')
     </div>

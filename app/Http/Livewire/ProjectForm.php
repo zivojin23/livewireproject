@@ -16,7 +16,6 @@ class ProjectForm extends Component
     use WithFileUploads;
 
     public $forms;
-    public $amount = 10;
 
     public $first_name;
     public $last_name;
@@ -47,6 +46,11 @@ class ProjectForm extends Component
     //     'email.email' => 'The Email Address format is not valid.',
     // ];
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->only('edit');
+    // }
+
     public function mount()
     {
         $this->forms = Form::orderBy('updated_at', 'desc')->get();
@@ -66,7 +70,7 @@ class ProjectForm extends Component
             'project_person' => $this->project_person,
             'attachment' => $this->attachment->store('public/docs')
  
-        ])->notify(new WelcomeEmailNotification());
+        ]);
 
         Mail::to($this->project_person)->send(new WelcomeMail());
 
@@ -134,10 +138,6 @@ class ProjectForm extends Component
 
     public function render()
     {
-
-        // sleep(2);
-        // $this->forms = Form::orderBy('updated_at', 'desc')->get();
-
         return view('livewire.project-form');
     }
 }
