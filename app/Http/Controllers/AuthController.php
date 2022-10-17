@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -27,12 +28,15 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
         $reg = $user->save();
+
+        // Auth::login($user);
 
         if($reg)
         {
@@ -42,6 +46,8 @@ class AuthController extends Controller
         {
             return back()->with('fail', 'Fail!');
         }
+
+        return redirect('/dashboard');
     }
 
     public function loginUser(Request $request)
@@ -58,7 +64,7 @@ class AuthController extends Controller
             if(Hash::check($request->password, $user->password))
             {
                 $request->session()->put('loginId', $user->id);
-                return redirect('/');
+                return redirect('/dashboard');
             }
             else
             {
@@ -78,7 +84,7 @@ class AuthController extends Controller
         {
             $data = User::where('id', '=', session::get('loginId'))->first();
         }
-        return view('/', compact('data'));
+        return view('/dashboard', compact('data'));
     }
     
     public function logout()
@@ -88,5 +94,10 @@ class AuthController extends Controller
             (session::pull('loginId'));
             return redirect('/');
         }
+    }
+
+    public function showUser()
+    {
+        $user = Auth::user();
     }
 }

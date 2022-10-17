@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Notifications\WelcomeEmailNotification;
 Use App\Mail\WelcomeMail;
 use App\Models\Form;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProjectForm extends Component
@@ -139,5 +141,10 @@ class ProjectForm extends Component
     public function render()
     {
         return view('livewire.project-form');
+    }
+
+    public function showUser()
+    {
+
     }
 }
