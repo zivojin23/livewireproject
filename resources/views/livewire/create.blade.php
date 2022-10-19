@@ -3,8 +3,6 @@
 
 <div class="">
 
-
-  
     <div class="flex flex-col w-4/5 mx-auto my-8">
         
         <label for="first_name" class="mb-2 mt-10 text-sm font-medium">First Name</label>

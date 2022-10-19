@@ -25,10 +25,18 @@
 
     <div class="flex flex-col w-1/5 mx-auto my-8">
         
-        <label for="name" class="mb-2 mt-10 text-sm font-medium">Name</label>
-        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="name" type="text" placeholder="Your Name" name="name">
+        <label for="first_name" class="mb-2 mt-10 text-sm font-medium">First Name</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="first_name" type="text" placeholder="Your First Name" name="first_name">
         
-        @error('name')<span class="text-red-600">{{ $message }}</span>@enderror
+        @error('first_name')<span class="text-red-600">{{ $message }}</span>@enderror
+    </div>
+
+    <div class="flex flex-col w-1/5 mx-auto my-8">
+        
+        <label for="last_name" class="mb-2 text-sm font-medium">Last Name</label>
+        <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" id="last_name" type="text" placeholder="Your Last Name" name="last_name">
+        
+        @error('last_name')<span class="text-red-600">{{ $message }}</span>@enderror
     </div>
 
     <div class="flex flex-col w-1/5 mx-auto my-8">

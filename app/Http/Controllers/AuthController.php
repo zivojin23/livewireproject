@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\ProjectForm;
+use App\Models\User;
+use Session;
 
 class AuthController extends Controller
 {
@@ -23,20 +24,22 @@ class AuthController extends Controller
     public function registerUser(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
 
-        $reg = $user->save();
+        $user->save();
 
-        // Auth::login($user);
+        Auth::login($user);
 
         if($reg)
         {
@@ -89,15 +92,14 @@ class AuthController extends Controller
     
     public function logout()
     {
-        if(session::has('loginId'))
-        {
-            (session::pull('loginId'));
-            return redirect('/');
-        }
+        // if(session::has('loginId'))
+        // {
+        //     (session::pull('loginId'));
+        //     return redirect('/');
+        // }
+        Auth::logout();
+
+        return redirect('/');
     }
 
-    public function showUser()
-    {
-        $user = Auth::user();
-    }
 }

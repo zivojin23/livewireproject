@@ -20,13 +20,13 @@
                 @auth
                 <div class="flex items-center md:order-2 ">
                     <button type="button" class="flex mr-3 text-sm bg-blue-200 rounded-lg md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                        <div class="py-2.5 px-5">{{ Auth::user()->name }}</div>
+                        <div class="py-2.5 px-5">{{ Auth::user()->first_name }}</div>
                     </button>
         
                     <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="user-dropdown" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 9.77778px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
                         
                         <div class="py-3 px-4">
-                            <span class="block text-sm text-gray-900">{{ Auth::user()->name }}</span>
+                            <span class="block text-sm text-gray-900">{{ Auth::user()->first_name }}</span>
                             <span class="block text-sm font-medium text-gray-500 truncate">{{ Auth::user()->email }}</span>
                         </div>
         
@@ -55,6 +55,10 @@
         </div>
     </nav>
 
+
+
+        
+   
     @foreach ($forms as $form)
 
     <div id="accordion-collapse" data-accordion="collapse">
@@ -115,6 +119,7 @@
   @endforeach
 
 </div>
+
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
 </html>

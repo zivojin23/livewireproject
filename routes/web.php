@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\ProjectForm;
 use App\Mail\WelcomeMail;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -18,12 +20,15 @@ use App\Http\Controllers\ListController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// ->middleware('auth')
+// ->middleware('alreadyLoggedIn')
+// Route::get('/', function () {
+//     return view('home');
+// });
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('isLoggedIn');
 
-Route::get('/login', [AuthController::class, 'login'])->middleware('alreadyLoggedIn');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->middleware('alreadyLoggedIn');
 
 Route::post('/registerUser', [AuthController::class, 'registerUser'])->name('registerUser');

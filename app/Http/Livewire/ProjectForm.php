@@ -4,14 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Notifications\WelcomeEmailNotification;
 Use App\Mail\WelcomeMail;
 use App\Models\Form;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-
 
 class ProjectForm extends Component
 {
@@ -39,7 +39,7 @@ class ProjectForm extends Component
         'project_priority' => 'required',
         'project_status' => 'required',
         'project_person' => 'required|email',
-        'attachment' => '',
+        'attachment' => 'required',
         
     ];
 
@@ -60,17 +60,25 @@ class ProjectForm extends Component
 
     public function store()
     {
-       $this->validate();
+
+        if (Auth::user()) {
+            
+            $this->first_name = Auth::user()->first_name;
+            $this->last_name = Auth::user()->last_name;
+            $this->email = Auth::user()->email;
+        }
+
+        $this->validate();
 
         Form::create([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'project_name' => $this->project_name,
-            'project_priority' => $this->project_priority,
-            'project_status' => $this->project_status,
-            'project_person' => $this->project_person,
-            'attachment' => $this->attachment->store('public/docs')
+            'first_name'        => $this->first_name,
+            'last_name'         => $this->last_name,
+            'email'             => $this->email,
+            'project_name'      => $this->project_name,
+            'project_priority'  => $this->project_priority,
+            'project_status'    => $this->project_status,
+            'project_person'    => $this->project_person,
+            'attachment'        => $this->attachment->store('public/docs')
  
         ]);
 
