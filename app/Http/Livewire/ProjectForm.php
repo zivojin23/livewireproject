@@ -61,6 +61,10 @@ class ProjectForm extends Component
     public function store()
     {
 
+        // $user = Auth::user();
+
+        // $this->validate($user);
+
         if (Auth::user()) {
             
             $this->first_name = Auth::user()->first_name;
@@ -68,7 +72,7 @@ class ProjectForm extends Component
             $this->email = Auth::user()->email;
         }
 
-        $this->validate();
+        
 
         Form::create([
             'first_name'        => $this->first_name,
@@ -78,7 +82,8 @@ class ProjectForm extends Component
             'project_priority'  => $this->project_priority,
             'project_status'    => $this->project_status,
             'project_person'    => $this->project_person,
-            'attachment'        => $this->attachment->store('public/docs')
+            'attachment'        => $this->attachment->store('public/docs'),
+            'user_id'           => Auth::id()
  
         ]);
 

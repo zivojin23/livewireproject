@@ -22,6 +22,7 @@ class Form extends Model
         'project_priority',
         'project_status',
         'project_person',
-        'attachment'
+        'attachment',
+        'user_id'
     ];
 }

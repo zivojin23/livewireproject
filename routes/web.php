@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\ProjectForm;
 use App\Mail\WelcomeMail;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 
 /*
@@ -20,21 +21,22 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// ->middleware('isLoggedIn')
 // ->middleware('auth')
 // ->middleware('alreadyLoggedIn')
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('isLoggedIn');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/myprojects', [HomeController::class, 'list'])->name('list');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->middleware('alreadyLoggedIn');
+Route::get('/login', function () { return view('auth.login'); });
+Route::get('/register', function () { return view('auth.register'); });
 
-Route::post('/registerUser', [AuthController::class, 'registerUser'])->name('registerUser');
-Route::post('/loginUser', [AuthController::class, 'loginUser'])->name('loginUser');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('isLoggedIn');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::get('/list', [ListController::class, 'list']);
+// Route::get('/list', [ListController::class, 'list']);

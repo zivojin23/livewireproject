@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="{{ route('loginUser') }}" method="POST">
+<form action="{{ route('login') }}" method="POST">
     @csrf
 
     <div class="flex justify-center w-1/5 mx-auto my-8 border-b border-gray-300">

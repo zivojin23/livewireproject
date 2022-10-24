@@ -12,19 +12,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        
 
-        $user = Auth::user();
+        return view('home', [
+            'user' => Auth::user()
+        ]);
+    }
 
-        // if(Auth::user()) 
-        // {
-            return view('home');
-        // }
-        // else
-        // {
-            // return "FAIL";
-        // }
-        // auth()->login($user);
-        
+    public function list()
+    {
+        return view('list', [
+            'user'  => Auth::user(),
+            'forms' => Form::orderBy('updated_at', 'desc')->get()
+        ]);
     }
 }

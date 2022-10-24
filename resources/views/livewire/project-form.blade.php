@@ -95,12 +95,12 @@
                     </div>
 
 
-                    @if (!Auth::user())
+                    {{-- @if (Auth::user())
                     <div class="p-3 flex flex-col">
                         <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 mb-8 border border-gray-400 rounded-lg shadow" wire:click="edit({{ $form->id }})">Edit<i class="fa-sharp fa-solid fa-pen ml-5"></i></button>
                         <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click="delete({{ $form->id }})">Delete<i class="fa-solid fa-trash ml-5"></i></button>
                     </div>   
-                    @endif
+                    @endif --}}
                     
                     
                    

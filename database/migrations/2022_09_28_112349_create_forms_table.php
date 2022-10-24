@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('project_status');
             $table->string('project_person');
             $table->string('attachment');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
