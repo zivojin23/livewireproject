@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>My Projects</title>
+
     <link href="/css/app.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5592293c7c.js" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+
+    @livewireStyles
 </head>
 <body>
 
@@ -54,6 +59,9 @@
                     <a href="register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign up</a>
                 @endauth
                 
+            
+
+
             </div>
 
         </div>
@@ -108,6 +116,9 @@
                             <div class="flex flex-row justify-between">
                                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click="edit({{ $form->id }})">Edit<i class="fa-sharp fa-solid fa-pen ml-5"></i></button>
                                 <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" wire:click="delete({{ $form->id }})">Delete<i class="fa-solid fa-trash ml-5"></i></button>
+                                <button onclick="Livewire.emit('openModal', 'edit-user')">Edit User</button>
+
+
                             </div>   
         
                         </div>
@@ -118,5 +129,7 @@
     </div>
 
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    @livewireScripts
+    @livewire('livewire-ui-modal')
 </body>
 </html>

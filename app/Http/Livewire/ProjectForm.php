@@ -60,10 +60,8 @@ class ProjectForm extends Component
 
     public function store()
     {
-
-        // $user = Auth::user();
-
-        // $this->validate($user);
+        
+        $this->validate();
 
         if (Auth::user()) {
             
@@ -156,8 +154,5 @@ class ProjectForm extends Component
         return view('livewire.project-form');
     }
 
-    public function showUser()
-    {
 
-    }
 }
