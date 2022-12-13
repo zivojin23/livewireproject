@@ -18,3 +18,4 @@ const mix = require('laravel-mix');
    require("tailwindcss"),
 
  ]);
+

@@ -28,6 +28,20 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/material', function () {
+    return view('material');
+});
+Route::get('/receiver', function () {
+    return view('receiver');
+});
+Route::get('/supplier', function () {
+    return view('supplier');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/myprojects', [HomeController::class, 'list'])->name('list');
 
