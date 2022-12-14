@@ -52,24 +52,25 @@
                 @error('measurement_unit')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
-                @if ($editMode)
-                    <div class="p-5 flex justify-end">
-                        <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow mr-4" 
-                                wire:click.prevent="updateMaterial()" type="submit">Update</button>
-                        <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
-                                wire:click.prevent="cancel()">Cancel</button>
-                    </div>
-                @else 
-                    <div class="p-5 flex justify-end">
-                        <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
-                                wire:click.prevent="storeMaterial()" type="submit">Store material</button>
-                    </div> 
-                @endif
+            @if ($editMode)
+                <div class="p-5 flex justify-end">
+                    <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow mr-4" 
+                            wire:click.prevent="updateMaterial()" type="submit">Update</button>
+                    <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                            wire:click.prevent="cancel()">Cancel</button>
+                </div>
+            @else 
+                <div class="p-5 flex justify-end">
+                    <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                            wire:click.prevent="storeMaterial()" type="submit">Store material</button>
+                </div> 
+            @endif
     
         </div>
         </form>
     </div>
 
+{{-- TABLE --}}
 <div class="w-4/5 mx-auto mt-10">
 
 <div class="flex justify-between mb-4">
@@ -119,7 +120,7 @@
                         wire:click="editMaterial({{ $material->id }})">Edit</button>                        
                 <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click="deleteMaterial({{ $material->id }})">Delete</button>                        
-            </td>    
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -130,7 +131,7 @@
     </div>
 
 </div>
-
+{{-- TABLE --}}
 
 </div>
 </div>

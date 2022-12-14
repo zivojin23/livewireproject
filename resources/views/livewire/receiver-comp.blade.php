@@ -69,10 +69,19 @@
                 @error('origin')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
-            <div class="p-5 flex justify-end">
+            @if ($editMode)
+                <div class="p-5 flex justify-end">
+                    <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow mr-4" 
+                            wire:click.prevent="updateReceiver()" type="submit">Update</button>
+                    <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                            wire:click.prevent="cancel()">Cancel</button>
+                </div>
+            @else 
+                <div class="p-5 flex justify-end">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click.prevent="storeReceiver()" type="submit">Create new reciever</button>
-            </div> 
+                </div> 
+            @endif
 
 
         </div>
@@ -130,9 +139,9 @@
             <td class="py-4 px-6 text-right">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click="editReceiver({{ $receiver->id }})">Edit</button>                        
-                <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                <button class="bg-white hover:bg-red-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click="deleteReceiver({{ $receiver->id }})">Delete</button>                        
-            </td>       
+            </td>
         </tr>
         @endforeach
     </tbody>
