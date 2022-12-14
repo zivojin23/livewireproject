@@ -14,4 +14,11 @@ class Material extends Model
         'material_name',
         'measurement_unit'
     ];
+
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('id_number', 'like', '%'.$search.'%')
+                            ->orWhere('material_name', 'like', '%'.$search.'%');
+    }
 }

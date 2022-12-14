@@ -15,4 +15,11 @@ class Receiver extends Model
         'supplier_id',
         'origin'
     ];
+
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('material_id', 'like', '%'.$search.'%')
+                            ->orWhere('quantity', 'like', '%'.$search.'%');
+    }
 }

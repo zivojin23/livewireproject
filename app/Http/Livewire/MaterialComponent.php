@@ -3,26 +3,21 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Material;
-// use Livewire\WithPagination;
 
 class MaterialComponent extends Component
 {
-    // use WithPagination;
-    // public $search = '';
- 
+    use WithPagination;
+
+    public $search = '';
+    public $perPage = 5;
 
     public $material_id;
     public $id_number;
     public $material_name;
     public $measurement_unit;
     public $editMode = false;
-
-    // public function updatingSearch()
-    // {
-    //     $this->resetPage();
-        
-    // }
 
     public function storeMaterial()
     {
@@ -74,9 +69,8 @@ class MaterialComponent extends Component
 
     public function render()
     {
-        $materials = Material::all();
-
-        return view('livewire.material-component', compact('materials'));
-
+        return view('livewire.material-component', [
+            'materials' => Material::search($this->search)->paginate($this->perPage),
+        ]);
     }
 }

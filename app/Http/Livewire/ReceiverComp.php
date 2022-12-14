@@ -3,12 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Material;
 use App\Models\Receiver;
 use App\Models\Supplier;
 
 class ReceiverComp extends Component
 {
+    use WithPagination;
+
+    public $search = '';
+    public $perPage = 5;
+
     public $material_id = '';
     public $quantity;
     public $supplier_id = '';
@@ -34,8 +40,15 @@ class ReceiverComp extends Component
 
     public function render()
     {
+        $receivers = Receiver::all();
         $materials = Material::all();
         $suppliers = Supplier::all();
-        return view('livewire.receiver-comp', compact('materials', 'suppliers'));
+
+        return view('livewire.receiver-comp', [
+            'materials' => $materials,
+            'suppliers' => $suppliers,
+            'receivers' => $receivers,
+            // 'receivers' => Receiver::search($this->search)->paginate($this->perPage),
+        ]);
     }
 }
