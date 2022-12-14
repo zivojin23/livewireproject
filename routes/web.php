@@ -24,14 +24,16 @@ use App\Http\Controllers\RegisterController;
 // ->middleware('isLoggedIn')
 // ->middleware('auth')
 // ->middleware('alreadyLoggedIn')
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
 
+Route::get('/', function () {
+    return view('dashboard');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-
 Route::get('/material', function () {
     return view('material');
 });
@@ -42,9 +44,6 @@ Route::get('/supplier', function () {
     return view('supplier');
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/myprojects', [HomeController::class, 'list'])->name('list');
-
 Route::get('/login', function () { return view('auth.login'); });
 Route::get('/register', function () { return view('auth.register'); });
 
@@ -52,5 +51,3 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
-
-// Route::get('/list', [ListController::class, 'list']);
