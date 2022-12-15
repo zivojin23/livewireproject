@@ -13,13 +13,17 @@ class Receiver extends Model
         'material_id',
         'quantity',
         'supplier_id',
-        'origin'
+        'origin',
+        'price'
     ];
 
-    public static function search($search)
+    public function material()
     {
-        return empty($search) ? static::query()
-            : static::query()->where('material_id', 'like', '%'.$search.'%')
-                            ->orWhere('quantity', 'like', '%'.$search.'%');
+        return $this->belongsTo(Material::class);
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 }

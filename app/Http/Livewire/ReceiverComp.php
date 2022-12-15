@@ -20,23 +20,29 @@ class ReceiverComp extends Component
     public $quantity;
     public $supplier_id = '';
     public $origin;
+    public $price;
     public $editMode = false;
 
     protected $rules = [
         'material_id'      => 'required',
-        'quantity'         => 'required'
+        'quantity'         => 'required|numeric',
+        'price'            => 'required',
+
     ];
     
     public function storeReceiver()
     {
+        $this->validate();
+
         Receiver::create([
             'material_id'     => $this->material_id,
             'quantity'        => $this->quantity,
             'supplier_id'     => $this->supplier_id,
-            'origin'          => $this->origin
+            'origin'          => $this->origin,
+            'price'           => $this->price,
         ]);
 
-        $this->reset(['material_id','quantity', 'supplier_id', 'origin']);
+        $this->reset(['material_id','quantity', 'supplier_id', 'origin', 'price']);
         session()->flash('submitted', 'Submitted!');
     }
 
@@ -48,6 +54,7 @@ class ReceiverComp extends Component
         $this->quantity         = $receiver->quantity;
         $this->supplier_id      = $receiver->supplier_id;
         $this->origin           = $receiver->origin;
+        $this->price            = $receiver->price;
         $this->editMode         = true;
     }
 
@@ -57,11 +64,12 @@ class ReceiverComp extends Component
             'material_id'     => $this->material_id,
             'quantity'        => $this->quantity,
             'supplier_id'     => $this->supplier_id,
-            'origin'          => $this->origin
+            'origin'          => $this->origin,
+            'price'           => $this->price
         ]);
 
         $this->editMode = false;
-        $this->reset(['material_id','quantity','supplier_id', 'origin']);
+        $this->reset(['material_id','quantity','supplier_id', 'origin', 'price']);
         session()->flash('updated', 'Updated!');
     }
 
@@ -71,17 +79,24 @@ class ReceiverComp extends Component
         session()->flash('deleted', 'Deleted!');
     }
 
+    public function cancel()
+    {
+        $this->reset(['material_id','quantity','supplier_id', 'origin', 'price']);
+        $this->editMode = false;
+    }
+
     public function render()
     {
-        $receivers = Receiver::all();
         $materials = Material::all();
         $suppliers = Supplier::all();
 
         return view('livewire.receiver-comp', [
             'materials' => $materials,
             'suppliers' => $suppliers,
-            'receivers' => $receivers,
-            // 'receivers' => Receiver::search($this->search)->paginate($this->perPage),
+            'receivers' => Receiver::where('quantity', 'like', '%'.$this->search.'%')
+                                    ->paginate($this->perPage),
         ]);
     }
 }
+
+// with('material')->where('material_id', 'like', '%'.$this->search.'%')

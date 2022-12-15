@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('receivers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('material_id');
-            $table->foreign('material_id')->references('id')->on('materials');
-            $table->string('quantity');
-            $table->string('supplier_id')->nullable();
+            $table->foreignId('material_id')->constrained();
+            $table->foreignId('supplier_id')->nullable()->constrained();
+            $table->integer('quantity');
             $table->string('origin')->nullable();
+            $table->integer('price');
             $table->timestamps();
         });
     }

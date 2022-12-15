@@ -15,7 +15,7 @@
 
     <div class="p-5 flex justify-center text-center">
         <h1 class="font-bold text-gray-600 text-4xl">
-            supplier</h1>
+            Supplier</h1>
     </div>
 
     <div>

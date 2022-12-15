@@ -10,15 +10,14 @@ class Material extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_number',
+        'unique_number',
         'material_name',
-        'measurement_unit'
+        'measurement_unit',
+        'quantity'
     ];
 
-    public static function search($search)
+    public function receivers()
     {
-        return empty($search) ? static::query()
-            : static::query()->where('id_number', 'like', '%'.$search.'%')
-                            ->orWhere('material_name', 'like', '%'.$search.'%');
+        return $this->hasMany(Receiver::class);
     }
 }

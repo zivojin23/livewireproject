@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_number');
+            $table->string('unique_number');
             $table->string('material_name');
             $table->string('measurement_unit');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

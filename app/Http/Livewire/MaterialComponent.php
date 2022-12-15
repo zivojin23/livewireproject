@@ -14,44 +14,57 @@ class MaterialComponent extends Component
     public $perPage = 5;
 
     public $material_id;
-    public $id_number;
+    public $unique_number;
     public $material_name;
     public $measurement_unit;
+    public $quantity;
     public $editMode = false;
+
+    protected $rules = [
+        'unique_number'     => 'required|unique:materials',
+        'material_name'     => 'required', 
+        'measurement_unit'  => 'required',
+        'quantity'          => 'required|numeric',
+    ];
 
     public function storeMaterial()
     {
+        $this->validate();
+        
         Material::create([
-            'id_number'         => $this->id_number,
+            'unique_number'     => $this->unique_number,
             'material_name'     => $this->material_name,
-            'measurement_unit'   => $this->measurement_unit
+            'measurement_unit'  => $this->measurement_unit,
+            'quantity'          => $this->quantity
         ]);
 
-        $this->reset(['id_number','material_name', 'measurement_unit']);
+        $this->reset(['unique_number','material_name', 'measurement_unit', 'quantity']);
         session()->flash('submitted', 'Submitted!');
     }
 
     public function editMaterial($id)
     {
         $material = Material::findOrFail($id);
-        $this->material_id      = $material->id;
-        $this->id_number        = $material->id_number;
-        $this->material_name    = $material->material_name;
-        $this->measurement_unit = $material->measurement_unit;
-        $this->editMode         = true;
+        $this->material_id       = $material->id;
+        $this->unique_number     = $material->unique_number;
+        $this->material_name     = $material->material_name;
+        $this->measurement_unit  = $material->measurement_unit;
+        $this->quantity          = $material->quantity;
+        $this->editMode          = true;
     }
 
     public function updateMaterial()
     {
         Material::find($this->material_id)->update([
             'material_id'        => $this->material_id,
-            'id_number'          => $this->id_number,
+            'unique_number'      => $this->unique_number,
             'material_name'      => $this->material_name,
-            'measurement_unit'   => $this->measurement_unit
+            'measurement_unit'   => $this->measurement_unit,
+            'quantity'           => $this->quantity,
         ]);
 
         $this->editMode = false;
-        $this->reset(['material_id','id_number','material_name', 'measurement_unit']);
+        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity']);
         session()->flash('updated', 'Updated!');
     }
 
@@ -63,14 +76,16 @@ class MaterialComponent extends Component
 
     public function cancel()
     {
-        $this->reset(['material_id','id_number','material_name', 'measurement_unit']);
+        $this->reset(['material_id','unique_number','material_name', 'measurement_unit']);
         $this->editMode = false;
     }
 
     public function render()
     {
         return view('livewire.material-component', [
-            'materials' => Material::search($this->search)->paginate($this->perPage),
+            'materials' => Material::where('unique_number', 'like', '%'.$this->search.'%')
+                                    ->orWhere('material_name', 'like', '%'.$this->search.'%')
+                                    ->paginate($this->perPage)
         ]);
     }
 }

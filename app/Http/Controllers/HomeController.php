@@ -10,19 +10,8 @@ use Session;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index() 
     {
-
-        return view('home', [
-            'user' => Auth::user()
-        ]);
-    }
-
-    public function list()
-    {
-        return view('list', [
-            'user'  => Auth::user(),
-            'forms' => Form::orderBy('updated_at', 'desc')->get()
-        ]);
+        return view('home');
     }
 }

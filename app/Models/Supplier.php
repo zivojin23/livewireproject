@@ -18,4 +18,9 @@ class Supplier extends Model
         'contact_phone',
         'contact_person'
     ];
+
+    public function receiver()
+    {
+        return $this->hasOne(Receiver::class);
+    }
 }

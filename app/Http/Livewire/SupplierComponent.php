@@ -40,7 +40,7 @@ class SupplierComponent extends Component
             'contact_person'    => $this->contact_person
         ]);
 
-        // $this->reset(['id_number','material_name', 'measurement_unit']);
+        $this->reset(['supplier_name','address', 'PIB', 'MB', 'email', 'contact_phone', 'contact_person']);
         session()->flash('submitted', 'Submitted!');
     }
 

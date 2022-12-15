@@ -32,10 +32,10 @@
         <div class="w-3/5 mx-auto">
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="id_number" class="mb-2 mt-10 text-sm font-medium">Unique Material Number</label>
+                <label for="unique_number" class="mb-2 mt-10 text-sm font-medium">Unique Material Number</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="id_number" id="id_number" type="text" placeholder="E.g. 123rX5ffz6">  
-                @error('id_number')<span class="text-red-600">{{ $message }}</span>@enderror
+                        wire:model="unique_number" id="unique_number" type="text" placeholder="E.g. 123rX5ffz6">  
+                @error('unique_number')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
@@ -50,6 +50,13 @@
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
                         wire:model="measurement_unit" id="measurement_unit" type="text" placeholder="E.g. litre, ton, gram, meter, m2...">  
                 @error('measurement_unit')<span class="text-red-600">{{ $message }}</span>@enderror
+            </div>
+
+            <div class="flex flex-col w-4/5 mx-auto my-8">
+                <label for="quantity" class="mb-2 text-sm font-medium">Quantity</label>
+                <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
+                        wire:model="quantity" id="quantity" type="text" placeholder="E.g. 10, 100, 500...">  
+                @error('quantity')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             @if ($editMode)
@@ -100,20 +107,22 @@
     <table class="w-full text-sm text-left text-gray-500">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
-            <th scope="col" class="py-3 px-6">Material ID</th>
+            {{-- <th scope="col" class="py-3 px-6">Material ID</th> --}}
             <th scope="col" class="py-3 px-6">Unique Material Number</th>
             <th scope="col" class="py-3 px-6">Name</th>
             <th scope="col" class="py-3 px-6">Measurement Unit</th>
+            <th scope="col" class="py-3 px-6">Quantity</th>
             <th scope="col" class="py-3 px-6"><span class="sr-only"></span></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($materials as $material)    
         <tr class="bg-white border-b hover:bg-gray-50">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{{ $material->id }}</th>
-            <td class="py-3 px-5">{{ $material->id_number }}</td>
+            {{-- <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{{ $material->id }}</th> --}}
+            <th  class="py-4 px-6 font-medium text-gray-900">{{ $material->unique_number }}</th>
             <td class="py-4 px-6">{{ $material->material_name }}</td>
             <td class="py-4 px-6">{{ $material->measurement_unit }}</td>
+            <td class="py-4 px-6">{{ $material->quantity }}</td>
 
             <td class="py-4 px-6 text-right">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 

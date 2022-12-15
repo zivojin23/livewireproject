@@ -32,51 +32,51 @@
         <div class="w-3/5 mx-auto">
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="supplier_name" class="mb-2 mt-10 text-sm font-medium">supplier_name</label>
+                <label for="supplier_name" class="mb-2 mt-10 text-sm font-medium">Name</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="supplier_name" id="supplier_name" type="text" placeholder="placeholder">  
+                        wire:model="supplier_name" id="supplier_name" type="text" placeholder="E.g. Joe & sons...">  
                 @error('supplier_name')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="address" class="mb-2 text-sm font-medium">address</label>
+                <label for="address" class="mb-2 text-sm font-medium">Address</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="address" id="address" type="text" placeholder="placeholder">  
+                        wire:model="address" id="address" type="text" placeholder="E.g. Crenshaw Boulevard...">  
                 @error('address')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="PIB" class="mb-2 text-sm font-medium">PIB</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="PIB" id="PIB" type="text" placeholder="placeholder">  
+                        wire:model="PIB" id="PIB" type="text" placeholder="...">  
                 @error('PIB')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="MB" class="mb-2 text-sm font-medium">MB</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="MB" id="MB" type="text" placeholder="placeholder">  
+                        wire:model="MB" id="MB" type="text" placeholder="...">  
                 @error('MB')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="email" class="mb-2 text-sm font-medium">email</label>
+                <label for="email" class="mb-2 text-sm font-medium">Email</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="email" id="email" type="email" placeholder="placeholder">  
+                        wire:model="email" id="email" type="email" placeholder="E.g. joe@email.com">  
                 @error('email')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
             
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="contact_phone" class="mb-2 text-sm font-medium">contact_phone</label>
+                <label for="contact_phone" class="mb-2 text-sm font-medium">Contact Phone</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="contact_phone" id="contact_phone" type="text" placeholder="placeholder">  
+                        wire:model="contact_phone" id="contact_phone" type="text" placeholder="E.g. +381615523122">  
                 @error('contact_phone')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
-                <label for="contact_person" class="mb-2 text-sm font-medium">contact_person</label>
+                <label for="contact_person" class="mb-2 text-sm font-medium">Contact Person</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
-                        wire:model="contact_person" id="contact_person" type="text" placeholder="placeholder">  
+                        wire:model="contact_person" id="contact_person" type="text" placeholder="E.g. Johnny (assistant)">  
                 @error('contact_person')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
