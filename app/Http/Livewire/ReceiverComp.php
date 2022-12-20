@@ -13,7 +13,7 @@ class ReceiverComp extends Component
     use WithPagination;
 
     public $search = '';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $receiver_id;
     public $material_id = '';
@@ -22,6 +22,7 @@ class ReceiverComp extends Component
     public $origin;
     public $price;
     public $editMode = false;
+    public $receiverz;
 
     protected $rules = [
         'material_id'      => 'required',
@@ -34,7 +35,7 @@ class ReceiverComp extends Component
     {
         $this->validate();
 
-        Receiver::create([
+        $newReceiver = Receiver::create([
             'material_id'     => $this->material_id,
             'quantity'        => $this->quantity,
             'supplier_id'     => $this->supplier_id,
@@ -42,8 +43,22 @@ class ReceiverComp extends Component
             'price'           => $this->price,
         ]);
 
+        $this->addToTotalStock($newReceiver);
+
         $this->reset(['material_id','quantity', 'supplier_id', 'origin', 'price']);
         session()->flash('submitted', 'Submitted!');
+    }
+
+    public function addToTotalStock($newReceiver)
+    {   
+        $quantity               = $newReceiver->quantity;
+        $material_id            = $newReceiver->material->id;
+
+        $receiverQty            = $newReceiver->quantity;
+        $stockQty               = $newReceiver->material->quantity;
+        $totalQty               = $receiverQty + $stockQty;
+
+        Material::where('id', $material_id)->update(['quantity' => $totalQty]);
     }
 
     public function editReceiver($id)

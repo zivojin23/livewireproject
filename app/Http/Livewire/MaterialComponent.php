@@ -11,7 +11,7 @@ class MaterialComponent extends Component
     use WithPagination;
 
     public $search = '';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $material_id;
     public $unique_number;
@@ -61,6 +61,17 @@ class MaterialComponent extends Component
             'material_name'      => $this->material_name,
             'measurement_unit'   => $this->measurement_unit,
             'quantity'           => $this->quantity,
+        ]);
+
+        $this->editMode = false;
+        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity']);
+        session()->flash('updated', 'Updated!');
+    }
+    // experiment
+    public function updateMaterialById()
+    {
+        Material::find($this->material_id)->update([
+            'quantity' => $this->quantity,
         ]);
 
         $this->editMode = false;

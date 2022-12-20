@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('receivers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('material_id')->constrained();
-            $table->foreignId('supplier_id')->nullable()->constrained();
             $table->integer('quantity');
-            $table->string('origin')->nullable();
             $table->integer('price');
+            $table->string('supplier_id')->nullable();
+            $table->string('origin')->nullable();
+
             $table->timestamps();
         });
     }
