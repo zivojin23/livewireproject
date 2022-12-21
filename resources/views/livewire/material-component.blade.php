@@ -32,6 +32,7 @@
         <div class="w-3/5 mx-auto">
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
+                
                 <label for="unique_number" class="mb-2 mt-10 text-sm font-medium">Unique Material Number</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
                         wire:model="unique_number" id="unique_number" type="text" placeholder="E.g. 123rX5ffz6">  
@@ -58,6 +59,34 @@
                         wire:model="quantity" id="quantity" type="text" placeholder="E.g. 10, 100, 500...">  
                 @error('quantity')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
+
+            <div class="flex flex-col w-4/5 mx-auto my-8">
+                <label for="price_per_unit" class="mb-2 text-sm font-medium">Price per unit</label>
+                <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
+                        wire:model="price_per_unit" id="price_per_unit" type="text" placeholder="...">  
+                @error('price_per_unit')<span class="text-red-600">{{ $message }}</span>@enderror
+            </div>
+
+            {{-- <div class="flex">
+                <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                    <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdown-button">
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">€</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">$</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">£</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">¥</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col w-4/5 mx-auto my-8">
+                    <label for="price_per_unit" class="mb-2 text-sm font-medium">Price</label>
+                        <div class="flex">
+                            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 rounded-lg inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300" 
+                                    type="button">Currency</button>
+                            <input class="shadow w-full p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
+                                    wire:model="price_per_unit" id="price_per_unit" type="text" placeholder="...">
+                        </div> 
+                    @error('price_per_unit')<span class="text-red-600">{{ $message }}</span>@enderror
+                </div>
+            </div> --}}
 
             @if ($editMode)
                 <div class="p-5 flex justify-end">
@@ -111,7 +140,8 @@
             <th scope="col" class="py-3 px-6">Unique Material Number</th>
             <th scope="col" class="py-3 px-6">Name</th>
             <th scope="col" class="py-3 px-6">Measurement Unit</th>
-            <th scope="col" class="py-3 px-6">Quantity</th>
+            <th scope="col" class="py-3 px-6">Total Quantity in stock</th>
+            <th scope="col" class="py-3 px-6">Price per unit</th>
             <th scope="col" class="py-3 px-6"><span class="sr-only"></span></th>
         </tr>
     </thead>
@@ -122,7 +152,8 @@
             <th  class="py-4 px-6 font-medium text-gray-900">{{ $material->unique_number }}</th>
             <td class="py-4 px-6">{{ $material->material_name }}</td>
             <td class="py-4 px-6">{{ $material->measurement_unit }}</td>
-            <td class="py-4 px-6">{{ $material->quantity }}</td>
+            <td class="py-4 px-6">{{ $material->quantity }} {{ $material->measurement_unit }}</td>
+            <td class="py-4 px-6">1 {{ $material->measurement_unit }} = {{ $material->price_per_unit }} $</td>
 
             <td class="py-4 px-6 text-right">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 

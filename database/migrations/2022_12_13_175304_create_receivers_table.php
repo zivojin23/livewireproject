@@ -17,10 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('material_id')->constrained();
             $table->integer('quantity');
-            $table->integer('price');
             $table->string('supplier_id')->nullable();
             $table->string('origin')->nullable();
-
             $table->timestamps();
         });
     }

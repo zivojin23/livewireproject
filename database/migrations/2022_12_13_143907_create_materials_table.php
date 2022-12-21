@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('material_name');
             $table->string('measurement_unit');
             $table->integer('quantity');
+            $table->integer('price_per_unit');
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ class MaterialComponent extends Component
     public $material_name;
     public $measurement_unit;
     public $quantity;
+    public $price_per_unit;
+
     public $editMode = false;
 
     protected $rules = [
@@ -25,6 +27,7 @@ class MaterialComponent extends Component
         'material_name'     => 'required', 
         'measurement_unit'  => 'required',
         'quantity'          => 'required|numeric',
+        'price_per_unit'    => 'required|numeric'
     ];
 
     public function storeMaterial()
@@ -35,10 +38,11 @@ class MaterialComponent extends Component
             'unique_number'     => $this->unique_number,
             'material_name'     => $this->material_name,
             'measurement_unit'  => $this->measurement_unit,
-            'quantity'          => $this->quantity
+            'quantity'          => $this->quantity,
+            'price_per_unit'    => $this->price_per_unit
         ]);
 
-        $this->reset(['unique_number','material_name', 'measurement_unit', 'quantity']);
+        $this->reset(['unique_number','material_name', 'measurement_unit', 'quantity', 'price_per_unit']);
         session()->flash('submitted', 'Submitted!');
     }
 
@@ -50,6 +54,8 @@ class MaterialComponent extends Component
         $this->material_name     = $material->material_name;
         $this->measurement_unit  = $material->measurement_unit;
         $this->quantity          = $material->quantity;
+        $this->price_per_unit    = $material->price_per_unit;
+
         $this->editMode          = true;
     }
 
@@ -61,21 +67,11 @@ class MaterialComponent extends Component
             'material_name'      => $this->material_name,
             'measurement_unit'   => $this->measurement_unit,
             'quantity'           => $this->quantity,
+            'price_per_unit'     => $this->price_per_unit,
         ]);
 
         $this->editMode = false;
-        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity']);
-        session()->flash('updated', 'Updated!');
-    }
-    // experiment
-    public function updateMaterialById()
-    {
-        Material::find($this->material_id)->update([
-            'quantity' => $this->quantity,
-        ]);
-
-        $this->editMode = false;
-        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity']);
+        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity', 'price_per_unit']);
         session()->flash('updated', 'Updated!');
     }
 
@@ -87,7 +83,7 @@ class MaterialComponent extends Component
 
     public function cancel()
     {
-        $this->reset(['material_id','unique_number','material_name', 'measurement_unit']);
+        $this->reset(['material_id','unique_number','material_name', 'measurement_unit', 'quantity', 'price_per_unit']);
         $this->editMode = false;
     }
 

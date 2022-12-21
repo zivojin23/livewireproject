@@ -13,7 +13,8 @@ class Material extends Model
         'unique_number',
         'material_name',
         'measurement_unit',
-        'quantity'
+        'quantity',
+        'price_per_unit'
     ];
 
     public function receivers()

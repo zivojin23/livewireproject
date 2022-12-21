@@ -43,6 +43,8 @@
                 @error('material_id')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
+            @livewire('auto-complete', ['table' => 'materials'])
+
             <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="quantity" class="mb-2 text-sm font-medium">Quantity</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
@@ -69,12 +71,12 @@
                 @error('origin')<span class="text-red-600">{{ $message }}</span>@enderror
             </div>
 
-            <div class="flex flex-col w-4/5 mx-auto my-8">
+            {{-- <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="price" class="mb-2 text-sm font-medium">Price</label>
                 <input class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
                         wire:model="price" id="price" type="text" placeholder="...">  
                 @error('price')<span class="text-red-600">{{ $message }}</span>@enderror
-            </div>
+            </div> --}}
 
             @if ($editMode)
                 <div class="p-5 flex justify-end">
@@ -87,7 +89,10 @@
                 <div class="p-5 flex justify-end">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click.prevent="storeReceiver()" type="submit">Create new reciever</button>
+                <button class="bg-red-500 hover:bg-red-700 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                        wire:click.prevent="receiverCost()" type="submit">dd($receiverCost)</button>
                 </div> 
+                
             @endif
 
 
@@ -127,7 +132,8 @@
                     <th scope="col" class="py-3 px-6">Receiver ID</th>
                     <th scope="col" class="py-3 px-6">Material </th>
                     <th scope="col" class="py-3 px-6">Receiver Quantity</th>
-                    <th scope="col" class="py-3 px-6">Total Quantity</th>
+                    <th scope="col" class="py-3 px-6">Material Total Quantity</th>
+                    <th scope="col" class="py-3 px-6">Receiver Cost</th>
                     <th scope="col" class="py-3 px-6"><span class="sr-only"></span></th>
                 </tr>
             </thead>
@@ -137,7 +143,8 @@
                     <th  class="py-4 px-6 font-medium text-gray-900">{{ $receiver->id }}</th>
                     <td class="py-4 px-6">{{ $receiver->material->material_name }}</td>
                     <td class="py-4 px-6">{{ $receiver->quantity }}</td>
-                    <td class="py-4 px-6">{{ $receiver->material->quantity }}</td>
+                    <td class="py-4 px-6">{{ $receiver->material->quantity }} {{ $receiver->material->measurement_unit }}</td>
+                    <td class="py-4 px-6">{{ $receiver->quantity }} x {{ $receiver->material->price_per_unit }} $</td>
         
                     <td class="py-4 px-6 text-right">
                         <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
