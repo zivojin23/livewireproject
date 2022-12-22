@@ -31,7 +31,7 @@
 
         <div class="w-3/5 mx-auto">
 
-            <div class="flex flex-col w-4/5 mx-auto my-8">      
+            {{-- <div class="flex flex-col w-4/5 mx-auto my-8">      
                 <label for="material_id" class="mb-2 mt-10 text-sm font-medium">Material</label>        
                 <select class="shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300" 
                         wire:model="material_id" id="material_id">
@@ -41,9 +41,15 @@
                         @endforeach
                 </select>     
                 @error('material_id')<span class="text-red-600">{{ $message }}</span>@enderror
-            </div>
+            </div> --}}
 
-            @livewire('auto-complete', ['table' => 'materials'])
+            @if ($material)
+                {{ $material->material_name }}, 
+                {{ $material->quantity }} {{ $material->measurement_unit }},
+                {{ $material->price_per_unit }}$ per unit
+            @else
+                @livewire('auto-complete', ['table' => 'materials', 'event' => 'selectedMaterial'])
+            @endif
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="quantity" class="mb-2 text-sm font-medium">Quantity</label>
@@ -89,8 +95,8 @@
                 <div class="p-5 flex justify-end">
                 <button class="bg-white hover:bg-green-200 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
                         wire:click.prevent="storeReceiver()" type="submit">Create new reciever</button>
-                <button class="bg-red-500 hover:bg-red-700 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
-                        wire:click.prevent="receiverCost()" type="submit">dd($receiverCost)</button>
+                {{-- <button class="bg-red-500 hover:bg-red-700 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow" 
+                        wire:click.prevent="receiverCost()" type="submit">dd($receiverCost)</button> --}}
                 </div> 
                 
             @endif
@@ -105,7 +111,7 @@
         <div class="flex justify-between mb-4">
             <div class="w-3/5">
                 <input class="w-full shadow p-2.5 text-sm rounded-lg bg-gray-50 border border-gray-300"
-                        wire:model.debounce.300ms="search" id="search" placeholder="Search by name or unique material number">
+                        wire:model.debounce.300ms="search" id="search" placeholder="Search by receiver quantity">
             </div>       
                         
             <div class="w-3/5 flex items-center justify-end mr-4">

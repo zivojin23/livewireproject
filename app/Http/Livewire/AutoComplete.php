@@ -12,6 +12,7 @@ class AutoComplete extends Component
     public $autocomplete;
     public $table;
     public $results = array();
+    public $event;
 
     public function updatedAutocomplete()
     {
@@ -23,6 +24,13 @@ class AutoComplete extends Component
         {
             $this->results = [];
         }
+    }
+
+    public function select($resultId)
+    {
+        // dd($resultId);
+        $this->emitUp($this->event, $resultId);
+        $this->reset('results');
     }
 
     public function render()

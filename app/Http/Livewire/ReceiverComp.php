@@ -21,6 +21,8 @@ class ReceiverComp extends Component
     public $quantity;
     public $supplier_id = '';
     public $origin;
+    public $material;
+
 
     public $editMode = false;
 
@@ -28,13 +30,15 @@ class ReceiverComp extends Component
         'material_id'      => 'required',
         'quantity'         => 'required|numeric'
     ];
+
+    protected $listeners = ['selectedMaterial'];
     
     public function storeReceiver()
     {
         $this->validate();
 
         $newReceiver = Receiver::create([
-            'material_id'     => $this->material_id,
+            'material_id'     => $this->material->id,
             'quantity'        => $this->quantity,
             'supplier_id'     => $this->supplier_id,
             'origin'          => $this->origin
@@ -45,18 +49,30 @@ class ReceiverComp extends Component
         session()->flash('submitted', 'Submitted!');
     }
 
-    public function receiverCost($newReceiver, $receiver_id)
+    // public function receiverCost()
+    // {
+    //     dd($newReceiver);
+    // }
+
+    public function selectedMaterial(Material $material)
     {
-        // $receiverCost = $newReceiver->quantity;
-        // * $newReceiver->material->price_per_unit;
-        // $newReceiver = Receiver::where('id', $this->receiver_id);
-        dd($newReceiver->toJson(JSON_PRETTY_PRINT));
-        // ->material->price_per_unit
+        $this->material = $material;
+        // dd($material->id);
+    }
 
+    // public function updated($key, $value)
+    // {
+        
+    //     if ('quantity') {
+    //         $this->newReceiver->cost = $this->newReceiver->quantity * $this->newReceiver->material->price_per_unit;
+    //     }
+    // }
 
+    public function updatedQuantity($value)
+    {
+        
     }
     
-
     public function addToTotalStock($newReceiver)
     {
         $quantity      = $newReceiver->quantity;
