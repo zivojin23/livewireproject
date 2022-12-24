@@ -43,13 +43,18 @@
                 @error('material_id')<span class="text-red-600">{{ $message }}</span>@enderror
             </div> --}}
 
-            @if ($material)
+            {{-- @if ($material)
                 {{ $material->material_name }}, 
                 {{ $material->quantity }} {{ $material->measurement_unit }},
                 {{ $material->price_per_unit }}$ per unit
             @else
                 @livewire('auto-complete', ['table' => 'materials', 'event' => 'selectedMaterial'])
-            @endif
+            @endif --}}
+
+            @livewire('search-dropdown', ['table' => 'materials'])
+
+            {{-- , key($material->id --}}
+
 
             <div class="flex flex-col w-4/5 mx-auto my-8">
                 <label for="quantity" class="mb-2 text-sm font-medium">Quantity</label>
